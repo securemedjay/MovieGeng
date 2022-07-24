@@ -1,0 +1,62 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Movies</h1>
+  </div>
+  
+  <section class="section dashboard">
+    <div class="row">
+      {% if home %}
+        {% include "base/movie_search.html" %}
+      {% endif %}
+      
+      <!-- Left side columns -->
+      <div class="col-lg-8">
+        <div class="row">
+          {% for review in reviews %}
+            <!-- Sales Card -->
+            <div class="card col-lg-3">
+              {% for movie in review.movies.all %}
+                <div class="card info-card sales-card front" style="background-image: url({{movie.img_url}});">
+                  <div class="card-body">
+                    <h5 class="card-title"><span>{{movie.name}}</span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center">
+                        <h5>{{review.rating}}</h5>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="back">
+                  <div>
+                    <div class="pagetitle">
+                      <p>Rated by</p><a href="{% url 'base:user-profile' review.reviewer.id %}">@{{ review.reviewer.username }}</a>
+                    </div>
+                    <p class="movie-search small fst-italic">
+                      {{ review.review }}
+                    </p>
+
+                    <div>
+                      {% if review.reviewer == request.user %}
+                        <a href="{% url 'base:update-movie' pk=review.id movie_id=movie.id %}">Update</a>
+                      {% endif %}
+                      <a href="{% url 'base:movie-detail' pk=review.id movie_id=movie.id %}">Details</a>
+                      <a href="{% url 'base:create-room' movie.id %}">Discuss</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <!-- End Sales Card -->
+          {% endfor %}
+        </div>
+      </div>
+      {% if not home %}
+        {% include "base/activities.html" %} 
+      {% endif %}
+    </div> 
+  </section>
+</main><!-- End #main -->

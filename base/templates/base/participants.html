@@ -1,0 +1,26 @@
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Recent Activity -->
+          <div class="card">
+
+            <div class="card-body">
+              <h5 class="card-title">Participants {{participants.count}}</h5>
+              {% for participant in participants %}
+                <div class="activity">
+                  <div class="message-card activity-item d-flex">
+                    <div class="activity-content">
+                      <a href="{% url 'base:user-profile' participant.id %}">
+                        <img class="room-avatar rounded-circle" src="{{participant.avatar.url}}" alt="Profile-pic">
+                        @{{participant.username}}
+                    </a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+
+            </div>
+          </div><!-- End Recent Activity -->
+
+
+        </div><!-- End Right side columns -->

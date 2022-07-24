@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+    <section class="section dashboard">
+        <section class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="pagetitle">
+                        <h1>Edit Room</h1>
+                    </div>
+                    
+                    
+                    <form method="post">
+                        {% csrf_token %}                        
+                        <div>
+                            <label for="name">Room Name</label>
+                            <p>{{form.name}}</p>
+                        </div>
+                        
+                        <div>
+                            <label for="description">Description</label>
+                            <p>{{form.description}}</p>
+                        </div>
+                        
+                        <div>
+                            <a class="btn btn-danger" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                            <button class="btn btn-outline-primary" type="submit">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+
+{% endblock %}

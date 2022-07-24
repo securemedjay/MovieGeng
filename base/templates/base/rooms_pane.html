@@ -1,0 +1,21 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fa-solid fa-user"></i>
+          <span>ROOM LIST</span>
+        </a>
+      </li>
+      <!-- End Dashboard Nav -->
+
+      {% for room in rooms %}
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" href="{% url 'base:room-detail' room.id %}">
+            <i class="fas fa-user"></i><span>{{room.name}}</span>
+          </a>
+        </li>
+      {% endfor %}
+      <!-- End Great Nav -->
+</aside>

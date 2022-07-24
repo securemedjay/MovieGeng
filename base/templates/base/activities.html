@@ -1,0 +1,32 @@
+<!-- Right side columns -->
+<div class="col-lg-4">
+
+  <!-- Recent Activity -->
+  <div class="card">
+    {% if message %}
+    <div class="card-body">
+      <h5 class="card-title">Room Activities</h5>
+      {% for message in messages %}
+      <div class="activity">
+        <hr>
+        <div class="message-card activity-item d-flex">
+          <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+          <div class="activity-content">
+            <a href="{% url 'base:user-profile' message.writer.id %}">
+              @{{message.writer.username}}
+            </a> wrote in
+            <a href="{% url 'base:room-detail' message.room.id %}" class="fw-bold text-dark"><span>{{message.room.name}}</span></a> room
+            <p class="small fst-italic">{{message.created_at|timesince}} ago</p>
+          </div>
+        </div><!-- End activity item-->
+        
+        
+      </div>
+      {% endfor %}
+
+    </div>
+    {% endif %}
+  </div><!-- End Recent Activity -->
+
+
+</div><!-- End Right side columns -->

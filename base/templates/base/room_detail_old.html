@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <h3>Movie Room</h3>
+
+        {% if request.user == room.host %}
+            <a href="#">Edit Room</a>
+            <a href="#">Delete Room</a>
+        {% endif %}
+    </div>
+
+    <div>
+        <p>{{room.name}}</p>
+        <p>{{room.description}}</p>
+        <p>Movie: {{room.movie.name}}</p>
+        <p>{{room.created_at|timesince}} ago</p>
+        <small>Hosted By</small>
+        <img src="{{room.host.avatar.url}}" alt="" srcset=""> @{{room.host.username}}
+    </div>
+
+    <div>
+        {% for message in room_messages %}
+            <hr>
+            <img src="{{message.writer.avatar.url}}" alt="" srcset=""> @{{message.writer.username}}
+            <p>{{message.created_at|timesince}} ago</p>
+            <p>{{message}}</p>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter your message here" name="message">
+            </form>
+        </div>
+        {% endif %}
+
+        <div>
+            <h3>Participants {{participants.count}}</h3>
+            {% for participant in participants %}
+                <img src="{{participant.avatar.url}}" alt="" srcset="">
+                <a href="{% url 'base:user-profile' participant.id %}">@{{participant.username}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main" class="main">
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered"> 
+                                <li class="nav-item">
+                                    <h5>Create Room</h5>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content pt-2">
+                                <div class="tab-pane fade show active profile-overview">
+                                    <div class="row">
+                                        <form class="" method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% if movie %}
+                                                    <div class="col-lg-3 col-md-4 label">
+                                                        <label for="movie">Movie to discuss:</label>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <input type="text" name="movie" value="{{movie.name}}" size="50" readonly>
+                                                    </div>
+                                                    
+                                                {% else %}
+                                                    <div class="col-lg-3 col-md-4 label">
+                                                        <label for="movie">Select Movie</label>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <input type="text" id="movie" name="movie" list="movie_titles" size="50">
+                                                    </div>
+                                                    <datalist id="movie_titles">
+                                                        <select id="movie">
+                                                            {% for movie in movies %}
+                                                            <option value="{{movie}}">{{movie}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </datalist>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">
+                                                    <label for="name">Room Name</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-8">
+                                                    <p>{{form.name}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">
+                                                    <label for="description">Description</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-8">
+                                                    <p>{{form.description}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <a class="btn btn-danger" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                                                <button class="btn btn-outline-primary" type="submit">Create</button>
+                                            </div>
+                                            
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+
+{% endblock %}

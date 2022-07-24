@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+
+{% block content %}
+    <!-- ======= Sidebar ======= -->
+    {% include "base/ratings.html" %}
+    <!-- End Sidebar-->
+        <main id="main" class="main">
+
+            <div class="">
+                <h1>{{movie.name}}</h1>
+            </div>
+            <!-- End Page Title -->
+
+            <section class="section profile">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card2">
+                        <div class="card-body pt-10 d-flex flex-column align-items-center">
+                            <img src="{{movie.img_url}}" alt="movie-img" height="300" width="250">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered"> 
+
+                            <li class="nav-item">
+                                <h5>Overview</h5>
+                            </li>
+                            {% if request.user == review.reviewer %}
+                            <li class="nav-item">
+                                <a href="{% url 'base:delete-movie' pk=review.id movie_id=movie.id%}"><i class='bx bx-x'></i></a>
+                            </li>
+                            </ul>
+                            {% endif %}
+
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="card-title">Plot</h5>
+                                <p class="small fst-italic">{{movie.overview}}</p>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Budget</div>
+                                    <div class="col-lg-9 col-md-8">${{movie.budget|intcomma}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Genres</div>
+                                    <div class="col-lg-9 col-md-8">{{movie.genres}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Release Date</div>
+                                    <div class="col-lg-9 col-md-8">{{movie.release_date}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Revenue</div>
+                                    <div class="col-lg-9 col-md-8">${{movie.revenue|intcomma}}</div>
+                                </div>
+
+                                <!-- if user is logged in -->
+                                {% if user.is_authenticated %}
+                                    <hr>
+                                    <h5 class="card-title">Update your rating</h5>
+                                    <div class="row">
+                                        <div>
+                                            <form class="" method="post">
+                                                {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-4 label">
+                                                            <label for="rating">Rating</label>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-8">
+                                                            <p>{{form.rating}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-4 label">
+                                                            <label for="review">Review</label>
+                                                        </div> 
+                                                        <div class="col-lg-9 col-md-8">
+                                                           <p>{{form.review}}</p>
+                                                        </div>
+                                                    </div>
+                                                     
+                                                    
+
+                                                    <div>
+                                                        <a class="card-btn btn btn-outline-dark" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                                                        <button type="submit" class=" card-btn btn btn-outline-success">Success</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+
+                                        
+                                    </div>
+                                {% endif %}
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+                </div>
+            </div>
+            </section>
+
+        </main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,38 @@
+{% include "base/ratings.html" %}
+
+{% for review in reviews %}
+
+<div class="card" >
+    {% for movie in review.movies.all %}
+    <div class="front" style="background-image: url({{movie.img_url}});">
+        <div>
+            <p class="large">{{ review.rating }}</p>
+            <p class="small">{{movie.name}}</p>
+        </div>
+    
+        
+
+    </div>
+
+    <div class="back">
+        <div>
+                <div class="title">
+                    <span>Rated by  <a href="{% url 'base:user-profile' review.reviewer.id %}">@{{ review.reviewer.username }}</a></span>
+                </div>
+                <p class="overview">
+                    {{ review.review }}
+                </p>
+
+                <div>
+                    {% if review.reviewer == request.user %}
+                    <a href="{% url 'base:update-movie' review.id %}">Update</a>
+                    {% endif %}
+                    <a href="{% url 'base:create-room' movie.id %}">Discuss</a>
+                </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+

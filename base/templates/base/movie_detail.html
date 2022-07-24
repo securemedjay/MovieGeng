@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+    <!-- ======= Sidebar ======= -->
+    {% include "base/ratings.html" %}
+    <!-- End Sidebar-->
+        <main id="main" class="main">
+
+            <div class="">
+                <h1>{{movie.name}}</h1>
+            </div>
+            <!-- End Page Title -->
+
+            <section class="section profile">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card2">
+                        <div class="card-body pt-10 d-flex flex-column align-items-center">
+                            <img src="{{movie.img_url}}" alt="movie-img" height="300" width="250">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered"> 
+
+                            <li class="nav-item">
+                            <h5>Overview</h5>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="card-title">Plot</h5>
+                                <p class="small fst-italic">{{movie.overview}}</p>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Budget</div>
+                                    <div class="col-lg-9 col-md-8">${{movie.budget|intcomma}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Genres</div>
+                                    <div class="col-lg-9 col-md-8">{{movie.genres}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Release Date</div>
+                                    <div class="col-lg-9 col-md-8">{{movie.release_date}}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Revenue</div>
+                                    <div class="col-lg-9 col-md-8">${{movie.revenue|intcomma}}</div>
+                                </div>
+
+                                <hr>
+                                {% if review %}
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Review</div>
+                                        <div class="small fst-italic col-lg-9 col-md-8">{{review.review}}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Reviewer</div>
+                                        <div class="col-lg-9 col-md-8"><a href="{% url 'base:user-profile' review.reviewer.id %}">@{{review.reviewer.username}}</a></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Review Date</div>
+                                        <div class="col-lg-9 col-md-8">{{review.reviewed_at}}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Rating</div>
+                                        <div class="large fst-italic col-lg-9 col-md-8"><strong>{{review.rating}}</strong></div>
+                                    </div>
+                                    
+                                </div>
+                                {% endif %}
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+                </div>
+            </div>
+            </section>
+
+        </main><!-- End #main -->
+{% endblock %}

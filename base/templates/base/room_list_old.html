@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Movie Rooms</h3>
+    <a href="{% url 'base:create-room' 0 %}">Create</a>
+    {% for room in rooms %}
+    <div class="container">
+        <hr>
+        <h2><a href="{% url 'base:room-detail' room.id %}">{{room.name}}</a></h2>
+        <p>created by @{{room.host.username}}</p>
+        <p>Movie being discussed: {{room.movie.name}}</p>
+        <small>{{room.description}}</small>
+        <small>{{room.participants.count}} participant</small>
+        <hr>
+    </div>
+    {% endfor %}
+
+{% endblock %}

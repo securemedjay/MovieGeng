@@ -1,0 +1,47 @@
+<main id="main" class="main">
+    
+    <div class="pagetitle">
+      <h1>Rooms</h1>
+      <h6 class="small fst-italic">{{rooms.count}} rooms available</h6>
+    </div><!-- End Page Title -->
+    <a class="room-btn btn btn-primary" href="{% url 'base:create-room' 0 %}">Create</a>
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+                <!-- Recent Sales -->
+                <div class="col-12">
+                {% for room in rooms %}
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <div>
+                                <a href="{% url 'base:user-profile' room.host.id %}"><img class="room-avatar rounded-circle" src="{{room.host.avatar.url}}" alt="Profile-pic">
+                                    @{{room.host.username}}
+                                </a>
+                                <span class="room-date small fst-italic">{{room.created_at|timesince}} ago</span>
+                            </div>
+                            
+                            <h5 class="room-title card-title"><a href="{% url 'base:room-detail' room.id %}">{{room.name}}</a></h5>
+                            <p>Movie being discussed: <span class="room-movie">{{room.movie.name}}</span></p>
+                            <p class="small fst-italic">{{room.description}}</p>
+                            <hr>
+                            <p><i class='bx bx-group'></i>{{room.participants.count}} participant(s)</p>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+                </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+
+        {% include "base/activities.html" %}
+
+      </div>
+    </section>
+
+</main><!-- End #main -->

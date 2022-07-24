@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {% if home %}
+        {% include "base/movie_list.html" %}
+    
+    {% else %}
+
+        {% include "base/ratings.html" %}
+
+        {% include "base/movie_list.html" %}
+
+    {% endif %}
+
+{% endblock %}

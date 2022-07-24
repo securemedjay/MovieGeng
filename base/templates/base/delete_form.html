@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main id="main" class="main">
+        <section class="section dashboard">
+            <section class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="pagetitle">
+                            <h1>Delete {{object}}</h1>
+                        </div>
+                        
+                        
+                        <form method="post">
+                            {% csrf_token %}                        
+                            <div>
+                                <p> Do you want to delete {{object}}?</p>
+                            </div>
+                            
+                            <div>
+                                <a class="btn btn-outline-primary" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+{% endblock %}
