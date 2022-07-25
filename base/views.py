@@ -200,6 +200,8 @@ def movie_list_view(request):
     fair_percent = (fair_rating_received/total_movie_reviews) * 100
     poor_percent = (poor_rating_received/total_movie_reviews) * 100
 
+    messages = Message.objects.all()
+
     context = {
         # "movies": movies,
         "reviews": reviews,
@@ -209,6 +211,7 @@ def movie_list_view(request):
         "fair_percent": fair_percent,
         "poor_percent": poor_percent,
         "total_movie_reviews": total_movie_reviews,
+        "messages": messages,
     }
 
     return render(request, "home.html", context)

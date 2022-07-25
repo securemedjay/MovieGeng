@@ -1,0 +1,8 @@
+admin.py
+settings.py
+tests.py
+*_old.html
+.DS_store
+**/logs
+/movie_geng_project/settings.py
+db.sqlite3
