@@ -34,10 +34,6 @@
                             <li class="nav-item">
                                 <h5>Overview</h5>
                             </li>
-                            <li>
-                                <a href="{{ request.META.HTTP_REFERER }}"><i class='back-arrow bx bx-arrow-back'></i></a>
-                            </li>
-
                         </ul>
 
                         <div class="tab-content pt-2">
@@ -115,7 +111,10 @@
                                         <div class="col-lg-9 col-md-8">{{form.review}}</div>
                                     </div>
 
-                                    <input class="" type="submit" value="Submit">
+                                    <div>
+                                        <a href="{{ request.META.HTTP_REFERER }}"><i class='back-icon bx bx-arrow-back'></i></a>
+                                        <button type="submit" class="submit-btn card-btn btn btn-outline-success">Submit</button>
+                                    </div>
 
                                 </form>
                                 

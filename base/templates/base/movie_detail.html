@@ -34,6 +34,9 @@
                             <li class="nav-item">
                             <h5>Overview</h5>
                             </li>
+                            {% if request.user == review.reviewer %}
+                                <a href="{% url 'base:update-movie' pk=review.id movie_id=movie.id %}"><i class='delete-icon bx bx-edit-alt'></i></a>
+                            {% endif %}
                         </ul>
 
                         <div class="tab-content pt-2">

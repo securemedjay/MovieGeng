@@ -5,4 +5,4 @@ tests.py
 .DS_store
 **/logs
 /movie_geng_project/settings.py
-db.sqlite3
+**.sqlite3

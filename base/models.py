@@ -45,7 +45,7 @@ class Review(models.Model):
     ]
 
     # rating = models.IntegerField()
-    movies = models.ManyToManyField(Movie, related_name="movies")
+    movies = models.ManyToManyField(Movie)
     review = models.TextField(null=True, blank=True)
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     rating = models.CharField(

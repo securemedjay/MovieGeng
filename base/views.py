@@ -17,7 +17,6 @@ fair_percent = 0
 poor_percent = 0
 
 
-
 def home_view(request):
     search_results = ""
     if request.GET.get("q"):
@@ -200,11 +199,32 @@ def movie_list_view(request):
 
 def movie_detail_view(request, pk, movie_id):
     review = Review.objects.get(id=pk)
-    movie = review.movies.get(id=movie_id)
+    movie = review.movies.get(id=movie_id)  # getting movies under review
+
+    m = Movie.objects.get(id=movie_id)
+    total_movie_reviews = m.review_set.all().count() # getting reviews under a movie
+
+    great_rating_received = m.review_set.filter(rating="Great").count()
+    good_rating_received = m.review_set.filter(rating="Good").count()
+    average_rating_received = m.review_set.filter(rating="Average").count()
+    fair_rating_received = m.review_set.filter(rating="Fair").count()
+    poor_rating_received = m.review_set.filter(rating="Poor").count()
+
+    great_percent = (great_rating_received/total_movie_reviews) * 100
+    good_percent = (good_rating_received/total_movie_reviews) * 100
+    average_percent = (average_rating_received/total_movie_reviews) * 100
+    fair_percent = (fair_rating_received/total_movie_reviews) * 100
+    poor_percent = (poor_rating_received/total_movie_reviews) * 100
 
     context = {
         "review": review,
-        "movie": movie
+        "movie": movie,
+        "great_percent": great_percent,
+        "good_percent": good_percent,
+        "average_percent": average_percent,
+        "fair_percent": fair_percent,
+        "poor_percent": poor_percent,
+        "total_movie_reviews": total_movie_reviews,
     }
     return render(request, "base/movie_detail.html", context)
 
@@ -224,6 +244,7 @@ def update_movie_view(request, pk, movie_id):
         "review": review,
         "form": form,
         "movie": movie,
+        
     }
     return render(request, "base/update_movie.html", context)
 
@@ -408,5 +429,3 @@ def user_update_view(request):
         "total_movie_reviews": total_movie_reviews,
     }
     return render(request, "base/user_profile.html", context)
-
-
