@@ -37,7 +37,7 @@
                             </li>
                             {% if request.user == review.reviewer %}
                             <li class="nav-item">
-                                <a href="{% url 'base:delete-movie' pk=review.id movie_id=movie.id%}"><i class='bx bx-x'></i></a>
+                                <a href="{% url 'base:delete-movie' pk=review.id movie_id=movie.id%}"><i class='delete-icon bx bx-x'></i></a>
                             </li>
                             </ul>
                             {% endif %}
@@ -97,8 +97,8 @@
                                                     
 
                                                     <div>
-                                                        <a class="card-btn btn btn-outline-dark" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
-                                                        <button type="submit" class=" card-btn btn btn-outline-success">Success</button>
+                                                        <a href="{{ request.META.HTTP_REFERER }}"><i class='back-icon bx bx-arrow-back'></i></a>
+                                                        <button type="submit" class="submit-btn card-btn btn btn-outline-success">Save</button>
                                                     </div>
                                             </form>
                                         </div>

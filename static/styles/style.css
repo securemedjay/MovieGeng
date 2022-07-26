@@ -1242,3 +1242,25 @@ height: 3rem;
 .movie-search {
   font-size: .52rem;
 }
+
+.delete-icon {
+  font-size: 1.5rem;
+  margin-left: 34.99rem;
+}
+
+.back-icon {
+  /* margin-left: 35rem; */
+  font-size: 1.5rem;
+}
+
+.submit-btn {
+  margin-left: 18rem;
+}
+
+/*--------------------------------------------------------------
+# Ratings
+--------------------------------------------------------------*/
+.edit-icon {
+  position: absolute;
+  right: 1rem;
+}

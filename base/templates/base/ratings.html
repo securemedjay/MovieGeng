@@ -17,31 +17,31 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" href="{% url 'base:movie-list' %}?w=great">
-          <i class="bx bx-journal-text"></i><span>Great {{great_percent|floatformat}}%</span>
+          <i class='bx bxs-star' style='color:#D4AF37; font-size:25px;'></i><span class="percentage">Great {{great_percent|floatformat}}%</span>
         </a>
       </li><!-- End Great Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" href="{% url 'base:movie-list' %}?w=great">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Good {{good_percent|floatformat}}%</span>
+          <i class='bx bxs-star' style='color:#FFDE2E; font-size:23px;'></i><span>Good {{good_percent|floatformat}}%</span>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" href="{% url 'base:movie-list' %}?w=great">
-          <i class="bi bi-bar-chart"></i><span>Average {{average_percent|floatformat}}%</span>
+          <i class='bx bxs-star' style='color:#FFE55C; font-size:20px;'></i><span>Average {{average_percent|floatformat}}%</span>
         </a>
       </li><!-- End Charts Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=great">
-          <i class="bi bi-gem"></i><span>Fair {{fair_percent|floatformat}}%</span>
+          <i class='bx bxs-star' style='color:#FFED8A; font-size:17px;'></i><span>Fair {{fair_percent|floatformat}}%</span>
         </a>
       </li><!-- End Icons Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=great">
-          <i class="bi bi-gem"></i><span>Poor {{poor_percent|floatformat}}%</span>
+          <i class='bx bxs-star' style='color:#ffff'></i><span>Poor {{poor_percent|floatformat}}%</span>
         </a>
       </li><!-- End Icons Nav -->
     </ul>

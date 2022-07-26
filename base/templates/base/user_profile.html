@@ -1,53 +1,216 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if form %}
 
-        <div class="container">
-            <h2>Edit your profile</h2>
-            <form method="post" enctype="multipart/form-data">
-                {% for field in form %}
-                    {% csrf_token %}
-                    <p>{{field.label}}</p>
-                    <p>{{field}}</p>
-                {% endfor%}
-                <a class="btn btn-danger" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
-                <input type="submit" value="Update">
-            </form>
-            
 
-        </div>
-    {% else %}
-
+  <!-- ======= Sidebar ======= -->
+  
     {% include "base/ratings.html" %}
+  
+  <!-- End Sidebar-->
 
-    <div class="container">
-        <div>
-            <img src="{{user.avatar.url}}" alt="{{user.username}} image" srcset="">
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Profile</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        {% if not form %}
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              <img src="{{user.avatar.url}}" alt="Profile-pic" class="rounded-circle">
+              <h2>@{{user.username}}</h2>
+              <h3 class="fst-italic"><strong>{{rank}}</strong></h3>
+              {% if rank == "Recruit" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% elif rank == "Sergeant" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% elif rank == "Lieutenant" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% elif rank == "Captain" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% elif rank == "Major" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% elif rank == "Colonel" %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% else %}
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                <i class='bx bxs-star' style='color:#D4AF37;'></i>
+              {% endif %}
+            </div>
+          </div>
         </div>
-
-        <div>
-            <p>{{user.first_name}} {{user.last_name}}</p>
-            <p>@{{user.username}}</p>
-        </div>
-
-        {% if request.user == user %}
-            <a href="{% url 'base:user-update'%}">Edit Profile</a>
         {% endif %}
+        
+        <div class="col-xl-8">
 
-        <div>
-            <h3>About</h3>
-            <p>{{user.bio}}</p>
+          <div class="card">
+            <div class="card-body pt-3">
+              {% if form %}
+                <ul class="nav nav-tabs nav-tabs-bordered">
+                  <li class="nav-item">
+                    <h6 class="">Update your details</h6>
+                  </li>
+                </ul>
+                
+                <div class="tab-content pt-2">
+
+                  <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Firstname</div>
+                        <div class="col-lg-9 col-md-8">{{form.first_name}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Lastname</div>
+                        <div class="col-lg-9 col-md-8">{{form.last_name}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Email</div>
+                        <div class="col-lg-9 col-md-8">{{form.email}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Username</div>
+                        <div class="col-lg-9 col-md-8">{{form.username}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Bio</div>
+                        <div class="col-lg-9 col-md-8 fst-italic">{{form.bio}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Avatar</div>
+                        <div class="col-lg-9 col-md-8 fst-italic">{{form.avatar}}</div>
+                      </div>
+    
+                      <div>
+                        <a href="{{ request.META.HTTP_REFERER }}"><i class='back-icon bx bx-arrow-back'></i></a>
+                        <input type="submit" class="submit-btn card-btn btn btn-outline-success" value="Save">
+                      </div>
+                    </form>
+                  </div>
+              {% else %}
+                <!-- Bordered Tabs -->
+                <ul class="nav nav-tabs nav-tabs-bordered">
+
+                  <li class="nav-item">
+                    <h6 class="">About</h6>
+                  </li>
+                  <li>
+                    {% if request.user == user %}
+                      <a href="{% url 'base:user-update'%}"><i class='edit-icon bx bxs-edit-alt'></i></a>
+                    {% endif %}
+                  </li>
+
+                </ul>
+                
+                <div class="tab-content pt-2">
+
+                  <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                    <p class="small fst-italic"></p>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                      <div class="col-lg-9 col-md-8">{{user.first_name}} {{user.last_name}}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Bio</div>
+                      <div class="col-lg-9 col-md-8 fst-italic">{{user.bio}}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Reviews</div>
+                      <div class="col-lg-9 col-md-8">{{review_count}}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Rank</div>
+                      <div class="col-lg-9 col-md-8 fst-italic"><strong>{{rank}}</strong> 
+                          {% if rank == "Recruit" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% elif rank == "Sergeant" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% elif rank == "Lieutenant" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% elif rank == "Captain" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% elif rank == "Major" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% elif rank == "Colonel" %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% else %}
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                            <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                          {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Rooms</div>
+                      <div class="col-lg-9 col-md-8">{{room_count}}</div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- End Bordered Tabs -->
+              {% endif %}
+            </div>
+          </div>
+
         </div>
+      </div>
+    </section>
 
-        <div>
-            <h3>Rooms Hosted by @{{user.username}}</h3>
-        </div>
-    </div>
-
-    {% include "base/activities.html" %}
-
-    {% endif %}
-
-
+  </main><!-- End #main -->
 {% endblock %}

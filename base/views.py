@@ -9,6 +9,13 @@ from django.contrib.auth.decorators import login_required
 
 
 md = MovieDisplay()
+total_movie_reviews = 0
+great_percent = 0
+good_percent = 0
+average_percent = 0
+fair_percent = 0
+poor_percent = 0
+
 
 
 def home_view(request):
@@ -80,34 +87,6 @@ def register_view(request):
     return render(request, "base/login_register.html", context)
 
 
-def user_profile_view(request, pk):
-    user = User.objects.get(id=pk)
-    rooms = user.room_set.all()
-
-    context = {
-        "user": user,
-        "rooms": rooms,
-    }
-    return render(request, "base/user_profile.html", context)
-
-
-@login_required(login_url="base:login")
-def user_update_view(request):
-    user = request.user
-    form = UserForm(instance=user)
-
-    if request.method == "POST":
-        form = UserForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect("base:user-profile", pk=user.id)
-
-    context = {
-        "form": form,
-    }
-    return render(request, "base/user_profile.html", context)
-
-
 # MOVIE FUNCTIONS
 @login_required(login_url="base:login")
 def create_movie_view(request, title_id):
@@ -171,6 +150,8 @@ def create_movie_view(request, title_id):
 
 
 def movie_list_view(request):
+    global great_percent, good_percent, average_percent, fair_percent, poor_percent, total_movie_reviews
+
     w = request.GET.get("w") if request.GET.get("w") else ""
     reviews = Review.objects.filter(
         Q(rating__icontains=w) |
@@ -361,3 +342,71 @@ def delete_room_view(request, pk):
         "object": room,
     }
     return render(request, "base/delete_form.html", context)
+
+
+def user_profile_view(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all()
+    # use user.review_set.all() instead of user.reviews because user has a one-many relationship with review, otherwise use user.reviews
+    reviews = user.review_set.all()
+    review_count = user.review_set.all().count()
+    room_count = user.room_set.all().count()
+
+    rank = ""
+    if review_count < 10:
+        rank = "Recruit"
+    elif 10 <= review_count < 30:
+        rank = "Sergeant"
+    elif 30 <= review_count < 60:
+        rank = "Lieutenant"
+    elif 60 <= review_count < 90:
+        rank = "Captain"
+    elif 90 <= review_count < 130:
+        rank = "Major"
+    elif 130 <= review_count < 180:
+        rank = "Colonel"
+    else:
+        rank = "General"
+
+    context = {
+        "user": user,
+        "rooms": rooms,
+        "review_count": review_count,
+        "room_count": room_count,
+        "rank": rank,
+        "great_percent": great_percent,
+        "good_percent": good_percent,
+        "average_percent": average_percent,
+        "fair_percent": fair_percent,
+        "poor_percent": poor_percent,
+        "total_movie_reviews": total_movie_reviews,
+        # "reviews": review,
+    }
+    return render(request, "base/user_profile.html", context)
+
+
+@login_required(login_url="base:login")
+def user_update_view(request):
+    user = request.user
+    form = UserForm(instance=user)
+
+    if request.method == "POST":
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("base:user-profile", pk=user.id)
+        else:
+            print(form.errors.as_data())
+
+    context = {
+        "form": form,
+        "great_percent": great_percent,
+        "good_percent": good_percent,
+        "average_percent": average_percent,
+        "fair_percent": fair_percent,
+        "poor_percent": poor_percent,
+        "total_movie_reviews": total_movie_reviews,
+    }
+    return render(request, "base/user_profile.html", context)
+
+
