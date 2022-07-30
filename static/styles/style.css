@@ -1285,3 +1285,34 @@ height: 3rem;
   border-radius: 0.25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+/*--------------------------------------------------------------
+# Search Page
+--------------------------------------------------------------*/
+/* #search-form {
+  margin-top: 60px;
+  padding: 20px 30px;
+  transition: all 0.3s;
+  padding: 20px;
+  height: 1000px;
+} */
+
+.search-main {
+  height: 1000px;
+}
+
+.main-search-form {
+    text-align-last: center;
+    padding: 100px 500px;
+    width: max-content;
+}
+
+.main-search-form label {
+    padding: 50px;
+    font-size: x-large;
+}
+
+.search-text {
+  width: 500px;
+  height: 50px;
+}
