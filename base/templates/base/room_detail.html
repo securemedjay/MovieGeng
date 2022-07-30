@@ -41,7 +41,7 @@
 
                 <div class="col-12">
                 
-                    <div class="card recent-sales overflow-auto">
+                    <div class="chat-box card recent-sales overflow-auto">
                         <div class="card-body">
                           {% for message in messages %}
                             <div>
@@ -59,7 +59,7 @@
                           <div>
                               <form method="post">
                                   {% csrf_token %}
-                                  <input type="text" placeholder="Enter your message here" name="message">
+                                  <input class="chat-textbox" type="text" placeholder="Enter your message here" name="message">
                               </form>
                           </div>
                         {% endif %}

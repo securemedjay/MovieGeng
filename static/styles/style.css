@@ -1165,7 +1165,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0;
   font-size: 14px;
   transition: all 0.3s;
-  border-top: 1px solid #cddfff;
 }
 .footer .copyright {
   text-align: center;
@@ -1222,6 +1221,17 @@ h1, h2, h3, h4, h5, h6 {
 
 #id_description {
   width: 415px;
+}
+
+.chat-box {
+  background: aliceblue;
+}
+
+.chat-textbox {
+  width: -webkit-fill-available;
+  height: 50px;
+  border-style: double;
+  font-style: italic;
 }
 
 /*--------------------------------------------------------------
@@ -1298,7 +1308,8 @@ height: 3rem;
 } */
 
 .search-main {
-  height: 1000px;
+  height: 730px;
+  /* background: linear-gradient(45deg, silver, white); */
 }
 
 .main-search-form {
@@ -1315,4 +1326,8 @@ height: 3rem;
 .search-text {
   width: 500px;
   height: 50px;
+}
+
+.search-footer {
+  margin: 0;
 }
