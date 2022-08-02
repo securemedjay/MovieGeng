@@ -22,25 +22,25 @@
       </li><!-- End Great Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="{% url 'base:movie-list' %}?w=great">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="{% url 'base:movie-list' %}?w=good">
           <i class='bx bxs-star' style='color:#FFDE2E; font-size:23px;'></i><span>Good {{good_percent|floatformat}}%</span>
         </a>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" href="{% url 'base:movie-list' %}?w=great">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" href="{% url 'base:movie-list' %}?w=average">
           <i class='bx bxs-star' style='color:#FFE55C; font-size:20px;'></i><span>Average {{average_percent|floatformat}}%</span>
         </a>
       </li><!-- End Charts Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=great">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=fair">
           <i class='bx bxs-star' style='color:#FFED8A; font-size:17px;'></i><span>Fair {{fair_percent|floatformat}}%</span>
         </a>
       </li><!-- End Icons Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=great">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=poor">
           <i class='bx bxs-star' style='color:#ffff'></i><span>Poor {{poor_percent|floatformat}}%</span>
         </a>
       </li><!-- End Icons Nav -->
