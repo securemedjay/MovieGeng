@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from tkinter import S
 import django_on_heroku
 import dj_database_url
 
@@ -151,6 +150,6 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "static/staticfiles"
 # Enable WhiteNoise's GZip compression of static assets.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
