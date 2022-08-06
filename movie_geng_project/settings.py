@@ -11,10 +11,16 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from tkinter import S
+import django_on_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / "templates"
+
+IS_HEROKU = "DYNO" in os.environ
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,10 +29,17 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!&3z2g$@!yd6a*5u^qenb$bbo!f28867+mf613r0or2-@f$ovi'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if "SECRET_KEY" in os.environ:
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+# SECURITY WARNING: don't run with debug turned on in production!
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = []
+
+if not IS_HEROKU:
+    DEBUG = True
 
 
 # Application definition
@@ -46,6 +59,7 @@ AUTH_USER_MODEL = 'base.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,6 +99,12 @@ DATABASES = {
     }
 }
 
+MAX_CONN_AGE = 600
+
+if "DATABASE_URL" in os.environ:
+    # Configure Django for DATABASE_URL environment variable.
+    DATABASES["default"] = dj_database_url.config(
+        conn_max_age=MAX_CONN_AGE, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -131,3 +151,6 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# Enable WhiteNoise's GZip compression of static assets.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
