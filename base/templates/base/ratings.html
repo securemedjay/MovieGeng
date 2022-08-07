@@ -24,39 +24,39 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse">
+        <a class="nav-link collapsed" data-bs-target="#ratings-nav" data-bs-toggle="collapse">
           <i class="bx bx-grid"></i>
           <span>RATINGS</span>
           <i class="bi bi-chevron-down ms-auto"></i>
         </a>
-          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <ul id="ratings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#forms-nav" href="{% url 'base:movie-list' %}?w=great">
+              <a class="nav-link collapsed" href="{% url 'base:movie-list' %}?w=great">
                 <i class='bx bxs-star' style='color:#D4AF37; font-size:20px;'></i>Great<span class="ms-auto">{{great_percent|floatformat}}%</span>
               </a>
             </li><!-- End Great Nav -->
       
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#tables-nav" href="{% url 'base:movie-list' %}?w=good">
+              <a class="nav-link collapsed" href="{% url 'base:movie-list' %}?w=good">
                 <i class='bx bxs-star' style='color:#FFDE2E; font-size:20px;'></i>Good<span class="ms-auto">{{good_percent|floatformat}}%</span>
               </a>
             </li><!-- End Good Nav -->
       
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#charts-nav" href="{% url 'base:movie-list' %}?w=average">
+              <a class="nav-link collapsed" href="{% url 'base:movie-list' %}?w=average">
                 <i class='bx bxs-star' style='color:#FFE55C; font-size:20px;'></i>Average<span class="ms-auto">{{average_percent|floatformat}}%</span>
               </a>
             </li><!-- End Average Nav -->
       
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=fair">
+              <a class="nav-link collapsed" href="{% url 'base:movie-list' %}?w=fair">
                 <i class='bx bxs-star' style='color:#FFED8A; font-size:20px;'></i>Fair<span class="ms-auto">{{fair_percent|floatformat}}%</span>
               </a>
             </li><!-- End Fair Nav -->
       
             <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#icons-nav" href="{% url 'base:movie-list' %}?w=poor">
+              <a class="nav-link collapsed" href="{% url 'base:movie-list' %}?w=poor">
                 <i class='bx bxs-star' style='color:black; font-size:20px;'></i>Poor<span class="ms-auto">{{poor_percent|floatformat}}%</span>
               </a>
             </li><!-- End Poor Nav -->
@@ -68,8 +68,27 @@
             </li>
           </ul>
       </li>
+
+      {% if rooms %}
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#rooms-nav" data-bs-toggle="collapse">
+            <i class='bx bx-conversation'></i>
+            Room List
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="rooms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            {% for room in rooms %}
+              <li>
+                <a class="nav-link collapsed" data-bs-target="#rooms-nav" href="{% url 'base:room-detail' room.id %}">
+                  <span>{{room.name}}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
       
-      <!-- End Dashboard Nav -->
+      <!-- End Room List Nav -->
 
       
     </ul>
