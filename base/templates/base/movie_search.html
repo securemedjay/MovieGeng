@@ -1,8 +1,8 @@
 <main>
   <div class="search-main">
     <div class="row">
-      <form class="col-lg-1">
-        <div class="main-search-form">
+      <form class="col">
+        <div class="search-label">
           <label for="q">Search for a movie you have seen</label>
           <p>
             <input
@@ -16,6 +16,7 @@
     </div>
 
     <div class="row">
+      
       {% for result in search_results %}
       <div class="card col-lg-3">
         <div
