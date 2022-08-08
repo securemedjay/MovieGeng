@@ -50,12 +50,16 @@ h1, h2, h3, h4, h5, h6 {
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
+
+.room-div {
+  margin: 25px 0;
+}
+
 
 .pagetitle h1 {
   font-size: 24px;
-  margin-bottom: 0;
   font-weight: 600;
   color: #012970;
 }
@@ -1183,16 +1187,18 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .room-avatar {
   /* margin: 1rem; */
-  width: 5%;
+  width: 7%;
 }
 
+
 .room-btn {
-  margin-left: 59%;
-    margin-top: -10%;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: right;
 }
 
 .room-date {
-  margin-left: 26rem;
+  text-align: right;
 }
 
 .room-title {
@@ -1216,14 +1222,6 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-#id_name {
-  width: 415px;
-}
-
-#id_description {
-  width: 415px;
-}
-
 .chat-box {
   background: aliceblue;
 }
@@ -1233,6 +1231,14 @@ h1, h2, h3, h4, h5, h6 {
   height: 50px;
   border-style: double;
   font-style: italic;
+}
+
+.chat-box img {
+  width: 5%;
+}
+
+.activity-content img {
+  width: 7%;
 }
 
 /*--------------------------------------------------------------
@@ -1265,7 +1271,7 @@ height: 3rem;
 }
 
 .submit-btn {
-  margin-left: 18rem;
+  margin-left: 9rem;
 }
 
 /*--------------------------------------------------------------

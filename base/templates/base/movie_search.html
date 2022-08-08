@@ -3,7 +3,7 @@
     <div class="row">
       <form class="col">
         <div class="search-label">
-          <label for="q">Search for a movie you have seen</label>
+          <label for="q">Rate a movie you have seen</label>
           <p>
             <input
               class="search-text"
@@ -18,30 +18,30 @@
     <div class="row">
       
       {% for result in search_results %}
-      <div class="card col-lg-3">
-        <div
-          class="sales-card front"
-          style="background-image: url(https://image.tmdb.org/t/p/w500{{result.poster_path}});"
-        >
-          <div class="card-body">
-            <h5 class="card-title"><span>{{ result.title }}</span></h5>
-          </div>
-        </div>
-
-        <div class="back">
-          <div>
-            <div class="pagetitle">
-              {{ result.title }}
-              <p>{{ result.release_date }}</p>
+        <div class="card col-lg-3">
+          <div
+            class="sales-card front"
+            style="background-image: url(https://image.tmdb.org/t/p/w500{{result.poster_path}});"
+          >
+            <div class="card-body">
+              <h5 class="card-title"><span>{{ result.title }}</span></h5>
             </div>
-            <p class="movie-search small fst-italic">{{ result.overview }}</p>
+          </div>
 
+          <div class="back">
             <div>
-              <a href="{% url 'base:create-movie' result.id %}">Rate</a>
+              <div class="pagetitle">
+                {{ result.title }}
+                <p>{{ result.release_date }}</p>
+              </div>
+              <p class="movie-search small fst-italic">{{ result.overview }}</p>
+
+              <div>
+                <a href="{% url 'base:create-movie' result.id %}">Rate</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       {% endfor %}
     </div>
   </div>
