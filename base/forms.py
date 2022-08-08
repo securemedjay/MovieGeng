@@ -18,8 +18,11 @@ class MyUserCreationForm(UserCreationForm):
     # adding form-control class to password1 and password2 fields
     def __init__(self, *args, **kwargs):
         super(MyUserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
-        self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
+        self.fields['password1'].widget = forms.PasswordInput(
+            attrs={'class': 'form-control'})
+        self.fields['password2'].widget = forms.PasswordInput(
+            attrs={'class': 'form-control'})
+
 
 class UserForm(ModelForm):
 
@@ -33,6 +36,9 @@ class UserForm(ModelForm):
             "first_name": forms.TextInput(attrs={"readonly": True}),
             "last_name": forms.TextInput(attrs={"readonly": True}),
             "email": forms.TextInput(attrs={"readonly": True}),
+            "bio": forms.Textarea(attrs={
+                "rows": 5,
+                "cols": 30,}),
         }
 
 
@@ -42,12 +48,26 @@ class MovieReviewForm(ModelForm):
         model = Review
         fields = ["review", "rating"]
 
+        widgets = {
+            "review": forms.Textarea(attrs={
+                "rows": 5,
+                "cols": 30, })
+        }
+
 
 class RoomForm(ModelForm):
 
     class Meta:
         model = Room
         fields = ["name", "description"]
+
+        widgets = {
+            "name": forms.TextInput(attrs={
+                "size": 30, }),
+            "description": forms.Textarea(attrs={
+                "rows": 5,
+                "cols": 30, })
+        }
 
 
 class MessageForm(ModelForm):

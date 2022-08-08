@@ -1,10 +1,23 @@
 <main id="main" class="main">
     
     <div class="pagetitle">
-      <h1>Rooms</h1>
-      <h6 class="small fst-italic">{{rooms.count}} rooms available</h6>
+      <div class="row">
+        <div class="col-lg-8 col-sm-12">
+          <div class="row">
+            
+              <h1 class="col-6">Rooms</h1>
+              <a class="room-btn col-6" href="{% url 'base:create-room' 0 %}"><i class='bx bx-plus'></i></a>
+            </div>
+          </div>
+          <h6 class="small fst-italic">{{rooms.count}} rooms available</h6>
+        </div>
+        
+     
+
+      
+      
     </div><!-- End Page Title -->
-    <a class="room-btn btn btn-primary" href="{% url 'base:create-room' 0 %}"><i class='bx bx-plus'></i></a>
+    
 
     <section class="section dashboard">
       <div class="row">
@@ -17,14 +30,15 @@
                 {% for room in rooms %}
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <div>
-                                <a href="{% url 'base:user-profile' room.host.id %}"><img class="room-avatar rounded-circle" src="{{room.host.avatar.url}}" alt="Profile-pic">
-                                    @{{room.host.username}}
-                                </a>
-                                <span class="room-date small fst-italic">{{room.created_at|timesince}} ago</span>
+                            <div class="row">
+                              <a class="col-6" href="{% url 'base:user-profile' room.host.id %}"><img class="room-avatar rounded-circle" src="{{room.host.avatar.url}}" alt="Profile-pic">
+                                  @{{room.host.username}}
+                              </a>
+                              <span class="room-date small fst-italic col-6">{{room.created_at|timesince}} ago</span>
                             </div>
                             
                             <h5 class="room-title card-title"><a href="{% url 'base:room-detail' room.id %}">{{room.name}}</a></h5>
+                            
                             <p>Movie being discussed: <span class="room-movie">{{room.movie.name}}</span></p>
                             <p class="small fst-italic">{{room.description}}</p>
                             <hr>
