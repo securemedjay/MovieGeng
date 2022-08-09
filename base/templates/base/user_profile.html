@@ -81,7 +81,7 @@
   
                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
   
-                      <form method="post" enctype="multipart/form-data">
+                      <form method="post">
                         {% csrf_token %}
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Firstname</div>
@@ -108,14 +108,14 @@
                           <div class="col-lg-9 col-md-8 fst-italic">{{form.bio}}</div>
                         </div>
   
-                        <div class="row">
+                        {% comment %} <div class="row">
                           <div class="col-lg-3 col-md-4 label">Avatar</div>
                           <div class="col-lg-9 col-md-8 fst-italic">{{form.avatar}}</div>
-                        </div>
+                        </div> {% endcomment %}
       
                         <div>
                           <a href="{{ request.META.HTTP_REFERER }}"><i class='back-icon bx bx-arrow-back'></i></a>
-                          <input type="submit" class="submit-btn card-btn btn btn-outline-success" value="Save">
+                          <input type="submit" class="submit-btn card-btn btn btn-outline-success" value="Update">
                         </div>
                       </form>
                     </div>
