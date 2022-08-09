@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% load gravatar %}
+
+{% block content %}
 <main id="main" class="main">
   <section class="section dashboard">
     <div class="row">
@@ -57,7 +60,7 @@
                 <a href="{% url 'base:user-profile' room.host.id %}"
                   ><img
                     class="room-avatar rounded-circle"
-                    src="{{message.writer.avatar.url}}"
+                    src="{% gravatar_url message.writer.email 150 %}"
                     alt="Profile-pic"
                   />
                   @{{message.writer.username}}

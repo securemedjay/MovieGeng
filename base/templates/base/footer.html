@@ -2,7 +2,7 @@
   {% load static %}
 
   {% if home %}
-    <footer class="search-footer footer">
+    <footer class="search-footer footer" id="main">
       <div class="copyright">
         &copy; Copyright <strong><span>SecureMedjay</span></strong>
       </div>
@@ -12,9 +12,9 @@
       </div>
     </footer><!-- End Footer -->
   {% else %}
-    <footer id="footer" class="footer">
+    <footer id="footer" class="footer" id="main">
       <div class="copyright">
-        &copy; Copyright <strong><span>SecureMedjay</span></strong>
+        &copy; Copyright {{current_year}} <strong><span>SecureMedjay</span></strong>
          
       </div>
       <div class="credits">

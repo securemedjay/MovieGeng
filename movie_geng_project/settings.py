@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'base',
+    'django_gravatar',
 ]
 
 AUTH_USER_MODEL = 'base.User'
@@ -156,3 +158,5 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Enable WhiteNoise's GZip compression of static assets.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 django_on_heroku.settings(locals())
+
+

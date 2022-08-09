@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load gravatar %}
+
 <html lang="en">
 
 <head>
@@ -77,47 +79,47 @@
         <!-- End Search Icon -->
         
         
-        {% if user.is_authenticated %}
-        <li class="nav-item dropdown">          
-            <a class="nav-link nav-profile d-flex align-items-center" href="" data-bs-toggle="dropdown">
-              <img src="{{user.avatar.url}}" alt="Profile-pic" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2">@{{user.username}}</span>
-            </a><!-- End Profile Image Icon -->
+        {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">          
+              <a class="nav-link nav-profile d-flex align-items-center" data-bs-toggle="dropdown">
+                <img src="{% gravatar_url request.user.email 150 %}" alt="Profile-pic" class="rounded-circle">
+                <span class="d-none d-md-block dropdown-toggle ps-2">@{{request.user.username}}</span>
+              </a><!-- End Profile Image Icon -->
 
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-              <li class="dropdown-header">
-                <h6>{{user.first_name}} {{user.last_name}}</h6>
-              </li>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                  <h6>{{request.user.first_name}} {{request.user.last_name}}</h6>
+                </li>
 
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="{% url 'base:user-profile' user.id %}">
-                  <i class="bx bx-user"></i>
-                  <span>My Profile</span>
-                </a>
-              </li>
-              
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'base:user-profile' user.id %}">
+                    <i class="bx bx-user"></i>
+                    <span>My Profile</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="{% url 'base:logout' %}">
-                  <i class='bx bx-exit' ></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'base:logout' %}">
+                    <i class='bx bx-exit' ></i>
+                    <span>Sign Out</span>
+                  </a>
+                </li>
 
-            </ul><!-- End Profile Dropdown Items -->
+              </ul><!-- End Profile Dropdown Items -->
 
-           
-            <!-- End Profile Image Icon -->            
+            
+              <!-- End Profile Image Icon -->            
 
-          
-        </li><!-- End Profile Nav -->
+            
+          </li><!-- End Profile Nav -->
         {% else %}
             <a class="nav-link nav-profile d-flex align-items-center pe-5" href="{% url 'base:login' %}">
               <span>Login</span>

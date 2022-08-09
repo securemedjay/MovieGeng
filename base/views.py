@@ -6,7 +6,8 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
+from django_gravatar.helpers import get_gravatar_profile_url, has_gravatar
 
 md = MovieDisplay()
 total_movie_reviews = 0
@@ -15,6 +16,12 @@ good_percent = 0
 average_percent = 0
 fair_percent = 0
 poor_percent = 0
+
+gravatar_exists = has_gravatar('securemedjay@gmail.com')
+print(f"Gravatar is {gravatar_exists}")
+
+current_year = datetime.now().year
+
 
 
 def home_view(request):
@@ -29,6 +36,7 @@ def home_view(request):
     context = {
         "search_results": search_results,
         "home": "home",
+        "current_year": current_year,
     }
     return render(request, "home.html", context)
 
@@ -313,6 +321,7 @@ def room_detail_view(request, pk):
     messages = room.message_set.all()
     participants = room.participants.all()
     rooms = Room.objects.all()
+    profile_url = get_gravatar_profile_url('alice@example.com')
     # form = MessageForm()
 
     if request.method == "POST":
