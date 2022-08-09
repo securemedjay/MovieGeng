@@ -56,7 +56,7 @@
           <div class="chat-box card recent-sales overflow-auto">
             <div class="card-body">
               {% for message in messages %}
-              <div>
+              <div class="room-div">
                 <a href="{% url 'base:user-profile' room.host.id %}"
                   ><img
                     class="room-avatar rounded-circle"
