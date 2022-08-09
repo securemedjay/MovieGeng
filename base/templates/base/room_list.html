@@ -1,3 +1,4 @@
+{% load gravatar %}
 <main id="main" class="main">
     
     <div class="pagetitle">
@@ -31,7 +32,7 @@
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <div class="row">
-                              <a class="col-6" href="{% url 'base:user-profile' room.host.id %}"><img class="room-avatar rounded-circle" src="{{room.host.avatar.url}}" alt="Profile-pic">
+                              <a class="col-6" href="{% url 'base:user-profile' room.host.id %}"><img class="room-avatar rounded-circle" src="{% gravatar_url room.host.email 150 %}" alt="Profile-pic">
                                   @{{room.host.username}}
                               </a>
                               <span class="room-date small fst-italic col-6">{{room.created_at|timesince}} ago</span>

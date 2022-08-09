@@ -36,7 +36,7 @@
             <a class="room-date col-6" href="{% url 'base:user-profile' room.host.id %}">
               <img
                 class="room-avatar rounded-circle"
-                src="{{room.host.avatar.url}}"
+                src="{% gravatar_url room.host.email 150 %}"
                 alt="Profile-pic"/>
               @{{room.host.username}}
             </a>
