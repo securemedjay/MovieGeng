@@ -17,9 +17,6 @@ average_percent = 0
 fair_percent = 0
 poor_percent = 0
 
-gravatar_exists = has_gravatar('securemedjay@gmail.com')
-print(f"Gravatar is {gravatar_exists}")
-
 current_year = datetime.now().year
 
 
@@ -84,6 +81,7 @@ def register_view(request):
             login(request, user)
             return redirect("base:home")
         else:
+            print(form.errors.as_data())
             messages.error(
                 request, "An error occurred during registration. Please try again")
 
