@@ -151,7 +151,7 @@
   
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Reviews</div>
-                        <div class="col-lg-9 col-md-8">{{review_count}}</div>
+                        <div class="col-lg-9 col-md-8"><a href="{% url 'base:movie-list'%}?w={{user.username}}">{{review_count}}</a></div>
                       </div>
   
                       <div class="row">
