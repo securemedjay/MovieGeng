@@ -320,9 +320,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
 }
 .card-title span {
-  color: #ffff;
+  color: lightcyan;
   font-size: 14px;
   font-weight: 800;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .card-btn {
@@ -813,11 +814,13 @@ h1, h2, h3, h4, h5, h6 {
 .dashboard .card-icon {
   font-size: 32px;
   line-height: 0;
-  width: 64px;
-  height: 64px;
+  width: 55px;
+  height: 55px;
   flex-shrink: 0;
   flex-grow: 0;
-  margin: auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .dashboard .sales-card .card-icon {
   /* color: #4154f1; */
