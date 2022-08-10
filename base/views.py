@@ -53,7 +53,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'You have logged in successfully')
-            return redirect("base:home")
+            return redirect(request.GET.get("next", "base:home"))  # redirects to next if available else redirects home
         else:
             messages.error(request, 'Password is incorrect')
 
@@ -79,7 +79,7 @@ def register_view(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect("base:home")
+            return redirect(request.GET.get("next", "base:home")) 
         else:
             print(form.errors.as_data())
             messages.error(
