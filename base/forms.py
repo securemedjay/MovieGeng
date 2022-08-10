@@ -33,9 +33,8 @@ class UserForm(ModelForm):
 
         # making firstname, lastname, email disabled
         widgets = {
-            "first_name": forms.TextInput(attrs={"readonly": True}),
-            "last_name": forms.TextInput(attrs={"readonly": True}),
             "email": forms.TextInput(attrs={"readonly": True}),
+            "username": forms.TextInput(attrs={"readonly": True}),
             "bio": forms.Textarea(attrs={
                 "rows": 5,
                 "cols": 30,}),

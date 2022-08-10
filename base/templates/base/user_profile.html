@@ -19,51 +19,51 @@
       <section class="section profile">
         <div class="row">
           {% if not form %}
-          <div class="col-xl-4">
-            <div class="card">
-              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                <img src="{% gravatar_url user.email 150 %}" alt="Profile-pic" class="rounded-circle">
-                <h2>@{{user.username}}</h2>
-                <h3 class="fst-italic"><strong>{{rank}}</strong></h3>
-                {% if rank == "Recruit" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% elif rank == "Sergeant" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% elif rank == "Lieutenant" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% elif rank == "Captain" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% elif rank == "Major" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% elif rank == "Colonel" %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% else %}
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                  <i class='bx bxs-star' style='color:#D4AF37;'></i>
-                {% endif %}
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                  <img src="{% gravatar_url user.email 150 %}" alt="Profile-pic" class="rounded-circle">
+                  <h2>@{{user.username}}</h2>
+                  <h3 class="fst-italic"><strong>{{rank}}</strong></h3>
+                  {% if rank == "Recruit" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% elif rank == "Sergeant" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% elif rank == "Lieutenant" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% elif rank == "Captain" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% elif rank == "Major" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% elif rank == "Colonel" %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% else %}
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                    <i class='bx bxs-star' style='color:#D4AF37;'></i>
+                  {% endif %}
+                </div>
               </div>
             </div>
-          </div>
           {% endif %}
           
           <div class="col-xl-8">
