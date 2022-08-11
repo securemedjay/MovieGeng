@@ -66,6 +66,7 @@ class Review(models.Model):
         return self.review[0:50]
 
 
+
 class Room(models.Model):
     name = models.CharField(max_length=255, unique=True)
     host = models.ForeignKey(User, on_delete=models.CASCADE)
