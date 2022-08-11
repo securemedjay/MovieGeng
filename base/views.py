@@ -47,15 +47,15 @@ def login_view(request):
         try:
             user = User.objects.get(email=email)
         except:
-            messages.error(request, 'User does not exists')
-
-        user = authenticate(request, email=email, password=password)
-        if user:
-            login(request, user)
-            messages.success(request, 'You have logged in successfully')
-            return redirect(request.GET.get("next", "base:home"))  # redirects to next if available else redirects home
+            messages.error(request, 'Username or password is incorrect. Try again')
         else:
-            messages.error(request, 'Password is incorrect')
+            user = authenticate(request, email=email, password=password)
+            if user:
+                login(request, user)
+                messages.success(request, 'You have logged in successfully')
+                return redirect(request.GET.get("next", "base:home"))  # redirects to next if available else redirects home
+            else:
+                messages.error(request, 'Username or password is incorrect. Try again')
 
     page = "login"
     context = {
@@ -66,6 +66,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, "You have logged out successfully")
     return redirect("base:home")
 
 

@@ -1356,3 +1356,11 @@ height: 3rem;
   padding: 25px;
   font-weight: lighter;
 }
+
+.message {
+  margin-top: 70px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-style: italic;
+  color: darkorange;
+}

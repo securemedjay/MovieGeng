@@ -130,6 +130,16 @@
 
   </header><!-- End Header -->
 
+  {% if messages %}
+    <ul class="messages message">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+          </li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+
   {% block content %}
 
   {% endblock %}
