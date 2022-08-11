@@ -303,12 +303,19 @@ def create_room_view(request, pk):
 
 
 def room_list_view(request):
-    rooms = Room.objects.all()
-    messages = Message.objects.all()
+
+    w = request.GET.get("w") if request.GET.get("w") else ""
+    rooms = Room.objects.filter(
+        Q(movie__name__icontains=w) |
+        Q(host__username__icontains=w)
+    )
+
+    # rooms = Room.objects.all()
+    room_messages = Message.objects.all()
 
     context = {
         "rooms": rooms,
-        "messages": messages,
+        "messages": room_messages,
     }
     return render(request, "base/room_home.html", context)
 
