@@ -1277,6 +1277,13 @@ height: 3rem;
   margin-left: 9rem;
 }
 
+.movie-thumbnail {
+  height: 100px;
+  width: 80px;
+  position: relative;
+  left: 50%;
+}
+
 /*--------------------------------------------------------------
 # Ratings
 --------------------------------------------------------------*/
@@ -1360,7 +1367,8 @@ height: 3rem;
 .message {
   margin-top: 70px;
   margin-bottom: 1rem;
-  text-align: center;
+  text-align: end;
   font-style: italic;
   color: darkorange;
+  margin-right: 10px;
 }

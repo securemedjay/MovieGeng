@@ -39,8 +39,14 @@
                             </div>
                             
                             <h5 class="room-title card-title"><a href="{% url 'base:room-detail' room.id %}">{{room.name}}</a></h5>
+
+                            <div class="row">
+                              <p class="col-6">Movie being discussed: <span class="room-movie">{{room.movie.name}}</span></p>
+                              <a class="col-6" href="{% url 'base:movie-list' %}?w={{room.movie.name}}"><img class="movie-thumbnail" src="{{room.movie.img_url}}" alt="movie-img"></a>
+                            </div>
                             
-                            <p>Movie being discussed: <span class="room-movie">{{room.movie.name}}</span></p>
+                            
+                            
                             <p class="small fst-italic">{{room.description}}</p>
                             <hr>
                             <p><i class='bx bx-group'></i>{{room.participants.count}} participant(s)</p>
