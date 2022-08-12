@@ -46,7 +46,11 @@
 
           <div class="row">
             <h5 class="room-div col-6">Movie:</h5>
-            <span class="room-div room-movie col-6 room-date">{{room.movie}}</span>
+            <div class="col-6">
+              
+              <a href="{% url 'base:movie-list' %}?w={{room.movie.name}}"><img class="movie-thumbnail" src="{{room.movie.img_url}}" alt="movie-img"></a>
+            </div>
+            
           </div>
         
           <!-- End Room Title -->
@@ -55,7 +59,7 @@
         <div class="col-12">
           <div class="chat-box card recent-sales overflow-auto">
             <div class="card-body">
-              {% for message in messages %}
+              {% for message in room_messages %}
               <div class="room-div">
                 <a href="{% url 'base:user-profile' room.host.id %}"
                   ><img

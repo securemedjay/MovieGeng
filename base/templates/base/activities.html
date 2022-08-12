@@ -3,10 +3,10 @@
 
   <!-- Recent Activity -->
   <div class="card">
-    {% if messages %}
+    {% if room_messages %}
     <div class="card-body">
       <h5 class="card-title">Room Activities</h5>
-      {% for message in messages %}
+      {% for message in room_messages %}
       <div class="activity">
         <hr>
         <div class="message-card activity-item d-flex">

@@ -186,7 +186,7 @@ def movie_list_view(request):
     fair_percent = (fair_rating_received/total_movie_reviews) * 100
     poor_percent = (poor_rating_received/total_movie_reviews) * 100
 
-    messages = Message.objects.all()
+    room_messages = Message.objects.all()
 
     context = {
         # "movies": movies,
@@ -197,7 +197,7 @@ def movie_list_view(request):
         "fair_percent": fair_percent,
         "poor_percent": poor_percent,
         "total_movie_reviews": total_movie_reviews,
-        "messages": messages,
+        "room_messages": room_messages,
     }
 
     return render(request, "home.html", context)
@@ -316,14 +316,14 @@ def room_list_view(request):
 
     context = {
         "rooms": rooms,
-        "messages": room_messages,
+        "room_messages": room_messages,
     }
     return render(request, "base/room_home.html", context)
 
 
 def room_detail_view(request, pk):
     room = Room.objects.get(id=pk)
-    messages = room.message_set.all()
+    room_messages = room.message_set.all()
     participants = room.participants.all()
     rooms = Room.objects.all()
     profile_url = get_gravatar_profile_url('alice@example.com')
@@ -341,7 +341,7 @@ def room_detail_view(request, pk):
     context = {
         # "form": form,
         "room": room,
-        "messages": messages,
+        "room_messages": room_messages,
         "rooms": rooms,
         "participants": participants,
     }
