@@ -198,7 +198,7 @@
   
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Rooms</div>
-                        <div class="col-lg-9 col-md-8">{{room_count}}</div>
+                        <div class="col-lg-9 col-md-8"><a href="{% url 'base:room-list'%}?w={{user.username}}">{{room_count}}</a></div>
                       </div>
   
                     </div>
