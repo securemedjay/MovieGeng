@@ -20,7 +20,7 @@ poor_percent = 0
 current_year = datetime.now().year
 
 
-def home_view(request):
+def rate_view(request):
     search_results = ""
     if request.GET.get("q"):
         q = request.GET.get("q")

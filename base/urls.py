@@ -5,7 +5,7 @@ app_name = "base"
 
 urlpatterns = [
     # Home
-    path("", views.home_view, name="home"),
+    path("", views.movie_list_view, name="home"),
 
     # Login,Logout,Register
     path("login", views.login_view, name="login"),
@@ -23,6 +23,7 @@ urlpatterns = [
     path("movie-delete/<int:pk>/<int:movie_id>",
          views.delete_movie_view, name="delete-movie"),
 
+     path("rate/", views.rate_view, name="rate"),
     # Room
     path("create-room/<int:pk>/", views.create_room_view, name="create-room"),
     path("rooms/", views.room_list_view, name="room-list"),
