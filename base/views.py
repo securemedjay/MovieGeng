@@ -26,9 +26,6 @@ def rate_view(request):
         q = request.GET.get("q")
         search_results = md.search_TMDB(q)
 
-        for result in search_results:
-            print(result)
-
     context = {
         "search_results": search_results,
         "home": "home",
@@ -126,6 +123,7 @@ def create_movie_view(request, title_id):
                 # language=language,
                 revenue=revenue
             )
+            print(movie)
 
             review = Review.objects.create(
                 review=request.POST.get("review"),
@@ -133,8 +131,9 @@ def create_movie_view(request, title_id):
                 reviewer=request.user
             )
             review.movies.add(movie)
+            print(review)
 
-            return redirect("base:movie-list")
+        return redirect("base:movie-list")
 
     context = {
         "form": form,
